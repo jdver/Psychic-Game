@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Psychic Game!</title>
+
+</head>
+<body>
+<h1>The Psychic Game</h1>
+<h3>Guess what letter I'm thinking of</h3>
+
+<div id="game">
+<p>Wins: </p>
+<p>Losses: </p>
+<p>Guesses Left: </p>
+<p>Your Guesses so far: </p>
+</div>
+
+<script type="text/javascript">
+
+    var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+
+        // var gameFunctions = document.getElementById("game");
+
+    var wins = 0;
+    var losses = 0;
+    var guesses = 9;
+    var choices = [];
+
+    
+    document.onkeypress = function(event) {
+    var userGuess = event.key;
+    var computerGuess = letters[Math.floor(Math.random() * letters.length)];
+
+        //  if(userGuess === computerGuess){
+        //      wins++;
+        //      guesses = 9;
+        //       choices = [];
+        //    }else{
+        //      guesses--;
+        //    }
+        //
+        //   if(guesses === 0){
+        //        losses++;
+        //   }
+
+        //document.getElementById('wins').innerHTML = "Wins: " + wins;
+        //document.getElementById('losses').innerHTML = "losses: " + losses;
+        //document.getElementById('guesses').innerHTML = "Guesses left: " + guesses;
+    var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+		 	
+
+			if (options.indexOf(userGuess) > -1) {
+
+				if (userGuess === computerGuess) {
+					wins++;
+					guesses = 9;
+					choices = [];
+				}
+
+				if (userGuess != computerGuess) {
+					guesses --;
+					choices.push(userGuess);
+				}
+
+				if (guesses === 0) {
+
+				guesses = 9;
+				losses ++;
+				choices = [];
+
+				
+			}
+
+			var html = 
+			"<p>Wins: " + wins + "</p>" +
+			"<p>Losses: " + losses + "</p>" +
+			"<p>Guesses left: " + guesses + "</p>" +
+			"<p>Your Guesses so far: " + choices.join(", ") + "</p>";
+
+            document.querySelector("#game").innerHTML = html;
+            
+        }
+    };
+</script>
+
+    
+
+
+
+
+
+
+</body>
+</html>
